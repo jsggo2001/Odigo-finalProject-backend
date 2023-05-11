@@ -1,4 +1,4 @@
-package com.ssafy.trip.domain.route;
+package com.ssafy.trip.domain.plan;
 
 import javax.persistence.*;
 

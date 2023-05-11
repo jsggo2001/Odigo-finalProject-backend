@@ -1,7 +1,7 @@
 package com.ssafy.trip.domain;
 
 import com.ssafy.trip.domain.board.Board;
-import com.ssafy.trip.domain.route.UserPlan;
+import com.ssafy.trip.domain.plan.UserPlan;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
