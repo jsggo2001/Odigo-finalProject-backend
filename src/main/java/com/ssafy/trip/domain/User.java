@@ -1,6 +1,7 @@
 package com.ssafy.trip.domain;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.route.UserPlan;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,4 +46,7 @@ public class User {
 
 	@OneToMany(mappedBy = "user")
 	private List<Board> boards = new ArrayList<>();
+
+	@OneToMany(mappedBy = "user")
+	private List<UserPlan> userPlans = new ArrayList<>();
 }
