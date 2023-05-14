@@ -1,6 +1,6 @@
 package com.ssafy.trip.domain.plan;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

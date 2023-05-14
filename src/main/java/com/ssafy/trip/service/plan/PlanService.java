@@ -1,6 +1,6 @@
 package com.ssafy.trip.service.plan;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.domain.plan.Plan;
 import com.ssafy.trip.domain.plan.UserPlan;
 import com.ssafy.trip.dto.plan.PlanRegisterDTO;

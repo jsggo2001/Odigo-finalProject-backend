@@ -1,12 +1,8 @@
 package com.ssafy.trip.dto.board;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter @Setter

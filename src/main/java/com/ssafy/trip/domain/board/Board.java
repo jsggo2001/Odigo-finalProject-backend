@@ -1,6 +1,6 @@
 package com.ssafy.trip.domain.board;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

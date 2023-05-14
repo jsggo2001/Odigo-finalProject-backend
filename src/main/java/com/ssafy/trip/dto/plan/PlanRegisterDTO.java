@@ -1,7 +1,5 @@
 package com.ssafy.trip.dto.plan;
 
-import com.ssafy.trip.domain.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

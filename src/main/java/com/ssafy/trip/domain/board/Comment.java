@@ -1,6 +1,6 @@
 package com.ssafy.trip.domain.board;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 

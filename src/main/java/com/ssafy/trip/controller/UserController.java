@@ -1,6 +1,6 @@
 package com.ssafy.trip.controller;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.UserDTO;
 import com.ssafy.trip.dto.UserRegisterDTO;
 import com.ssafy.trip.dto.UserUpdateFormDTO;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

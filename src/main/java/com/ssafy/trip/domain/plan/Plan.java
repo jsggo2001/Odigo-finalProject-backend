@@ -1,6 +1,5 @@
 package com.ssafy.trip.domain.plan;
 
-import com.ssafy.trip.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,10 +17,6 @@ public class Plan {
     private Long id;
 
     private String name;
-
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<User> user = new ArrayList<>();
 
     @OneToMany(mappedBy = "plan")
     private List<Route> routes = new ArrayList<>();

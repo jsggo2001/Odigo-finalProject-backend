@@ -1,4 +1,4 @@
-package com.ssafy.trip.domain;
+package com.ssafy.trip.domain.user;
 
 import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.plan.UserPlan;
