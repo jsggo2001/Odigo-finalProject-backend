@@ -2,9 +2,7 @@ package com.ssafy.trip.domain;
 
 import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.plan.UserPlan;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -17,6 +15,9 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @EntityListeners(AuditingEntityListener.class)
 public class User {
 
@@ -24,14 +25,14 @@ public class User {
 	@GeneratedValue
 	@Column(name = "user_id")
 	private Long id;
-	
+
 	@Column(name = "login_id")
 	private String loginId;
-	
+
 	private String mail;
-	
+
 	private String name;
-	
+
 	private String password;
 
 	@Column(name = "phone_number")

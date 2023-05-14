@@ -25,7 +25,7 @@ public class UserController {
     @PostMapping("/login")
     private boolean login(@RequestParam String loginId, @RequestParam String password) {
 
-        User user = userService.getUser(loginId);
+        User user = userService.findUserByName(loginId);
         if (user != null && user.getPassword().equals(password)) {
             return true;
         }

@@ -1,10 +1,17 @@
 package com.ssafy.trip.domain.plan;
 
 import com.ssafy.trip.domain.User;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserPlan {
 
     @Id @GeneratedValue
