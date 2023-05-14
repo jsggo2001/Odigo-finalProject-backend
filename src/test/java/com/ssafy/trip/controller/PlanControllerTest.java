@@ -27,8 +27,10 @@ class PlanControllerTest {
         routes[2] = new RouteRequest("route3",3,(float)123.323,(float)142.24231);
 
         PlanRegisterDTO dto = new PlanRegisterDTO("test","test", routes);
+        PlanRegisterDTO dto2 = new PlanRegisterDTO("test2","test2", routes);
 
         System.out.println(planController.registerPlan(dto));
+        System.out.println(planController.registerPlan(dto2));
 
     }
 }
