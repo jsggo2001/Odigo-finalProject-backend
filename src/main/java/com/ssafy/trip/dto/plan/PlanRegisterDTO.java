@@ -1,5 +1,6 @@
 package com.ssafy.trip.dto.plan;
 
+import com.ssafy.trip.domain.plan.Route;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,6 +13,8 @@ public class PlanRegisterDTO {
     private String description;
 
     private int recommend = 0;
+
+    private RouteRequest[] routes;
 
     public PlanRegisterDTO(String name, String description, int recommend) {
         this.name = name;

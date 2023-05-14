@@ -1,8 +1,14 @@
 package com.ssafy.trip.domain.plan;
 
+import lombok.*;
+
 import javax.persistence.*;
 
 @Entity
+@Builder
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Route {
     @Id
     @GeneratedValue

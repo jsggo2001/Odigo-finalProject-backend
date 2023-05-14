@@ -1,6 +1,7 @@
 package com.ssafy.trip.domain.plan;
 
 import com.ssafy.trip.domain.User;
+import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Setter
+@Getter
 public class Plan {
     @Id
     @GeneratedValue
