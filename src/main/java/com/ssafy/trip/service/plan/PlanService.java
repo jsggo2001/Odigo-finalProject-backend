@@ -27,7 +27,7 @@ public class PlanService {
         plan.setRecommend(dto.getRecommend());
         planRepository.save(plan);
 
-        saveRoutes(dto.getRoutes());
+        saveRoutes(dto.getRoutes(), plan);
         return PlanResponse.builder().id(plan.getId())
                 .name(plan.getName())
                 .description(plan.getDescription())
@@ -36,9 +36,9 @@ public class PlanService {
     }
 
     @Transactional
-    public void saveRoutes(RouteRequest[] routeRequests) {
+    public void saveRoutes(RouteRequest[] routeRequests, Plan plan) {
         for (RouteRequest routeRequest : routeRequests) {
-            routeService.save(routeRequest);
+            routeService.save(routeRequest , plan);
         }
 
     }

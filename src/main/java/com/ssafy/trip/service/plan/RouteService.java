@@ -1,5 +1,6 @@
 package com.ssafy.trip.service.plan;
 
+import com.ssafy.trip.domain.plan.Plan;
 import com.ssafy.trip.domain.plan.Route;
 import com.ssafy.trip.dto.plan.RouteRequest;
 import com.ssafy.trip.dto.plan.RouteResponse;
@@ -16,13 +17,14 @@ public class RouteService {
     private final RouteRepository routeRepository;
 
     @Transactional
-    public RouteResponse save(RouteRequest request) {
+    public RouteResponse save(RouteRequest request, Plan plan) {
 
         Route route = Route.builder().name(request.getName()).sequence(request.getSequence())
                         .latitude(request.getLatitude()).longitude(request.getLongitude()).build();
+        route.addPlan(plan);
         routeRepository.save(route);
 
-        return RouteResponse.builder().name(route.getName()).plan_name(route.getPlan().getName())
+        return RouteResponse.builder().name(route.getName()).plan_name(plan.getName())
                 .sequence(route.getSequence()).latitude(route.getLatitude()).longitude(route.getLongitude()).build();
     }
 }

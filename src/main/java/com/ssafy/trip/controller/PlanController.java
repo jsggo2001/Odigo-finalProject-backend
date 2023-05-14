@@ -19,10 +19,9 @@ public class PlanController {
     private final PlanService planService;
 
     @PostMapping
-    private ResponseEntity registerPlan(@ModelAttribute PlanRegisterDTO dto) {
-        log.info("asdasdsdsd");
+    public ResponseEntity registerPlan(@ModelAttribute PlanRegisterDTO dto) {
         System.out.println(dto);
-//        planService.save(dto);
+        planService.save(dto);
         return ResponseEntity.ok().build();
     }
 }
