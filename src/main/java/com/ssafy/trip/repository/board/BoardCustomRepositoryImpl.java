@@ -1,5 +1,6 @@
 package com.ssafy.trip.repository.board;
 
+import com.ssafy.trip.domain.User;
 import com.ssafy.trip.domain.board.Board;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +27,10 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 .getResultList();
 
     }
-
+    @Override
+    public Board getBoard(Long id) {
+        return em.find(Board.class, id);
+    }
     @Override
     public void registerBoard(Board board){
         em.persist(board);

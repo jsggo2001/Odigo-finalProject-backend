@@ -1,6 +1,7 @@
 package com.ssafy.trip.dto.board;
 
 import com.ssafy.trip.domain.User;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,8 +13,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 
-@Getter
-@Setter
+@Data
 public class BoardFormDTO {
 
     private Long id;

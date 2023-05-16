@@ -20,6 +20,7 @@ public class BoardService {
 
     @Transactional
     public boolean registBoard(Board board){
+        board.setCount(0L);
         try {
             boardRepository.registerBoard(board);
             log.debug("registBoard: "+ board);
@@ -32,6 +33,7 @@ public class BoardService {
 
     public List<Board> getBoards(){return boardRepository.findAll(); }
 
+    public Board getBoard(Long id){return boardRepository.getBoard(id); }
     @Transactional
     public List<Board> getBoardsByTitle(String title){
         return boardRepository.getBoardsByName(title);
@@ -49,6 +51,13 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    @Transactional
+    public void increaseBoardCnt(Long id){
+        Board board = boardRepository.getBoard(id);
+        System.out.println(board);
+       Long hit = board.getCount();
+       board.setCount(hit+1);
+    }
 
 
 

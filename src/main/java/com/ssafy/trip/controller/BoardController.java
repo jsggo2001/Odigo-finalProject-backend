@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/board")
 @RequiredArgsConstructor
@@ -32,9 +33,15 @@ public class BoardController {
         return new ResponseEntity<>(boardList, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    private ResponseEntity<Board> getBoard(@PathVariable Long id){
+        Board board = boardService.getBoard(id);
+        boardService.increaseBoardCnt(id);
+        return new ResponseEntity<>(board, HttpStatus.OK);
+    }
 
     @PostMapping
-    private void registerBoard(@ModelAttribute BoardDTO BoardDTO){
+    private ResponseEntity<?> registerBoard(@RequestBody BoardDTO BoardDTO){
         Board board = new Board();
         System.out.println(BoardDTO);
 
@@ -44,16 +51,20 @@ public class BoardController {
         board.setCount(BoardDTO.getCount());
 
         boardService.registBoard(board);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{boardId}")
-    private void updateBoard(@ModelAttribute BoardFormDTO boardFormDTO){
+    private ResponseEntity<?> updateBoard(@RequestBody BoardFormDTO boardFormDTO){
+        System.out.println(boardFormDTO);
         boardService.updateBoard(boardFormDTO);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{boardId}")
-    private void removeBoard(@PathVariable Long boardId){
+    private ResponseEntity<?> removeBoard(@PathVariable Long boardId){
         boardService.removeBoard(boardId);
+        return ResponseEntity.ok().build();
     }
 
 
