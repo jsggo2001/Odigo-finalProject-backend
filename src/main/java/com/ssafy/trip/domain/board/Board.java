@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -37,9 +38,9 @@ public class Board {
 
     @CreatedDate
     @Column(name = "created_date", updatable = false)
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "modified_date")
-    private LocalDate modifiedDate;
+    private LocalDateTime modifiedDate;
 }
