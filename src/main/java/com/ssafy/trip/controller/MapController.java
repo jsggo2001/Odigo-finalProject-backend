@@ -1,5 +1,9 @@
 package com.ssafy.trip.controller;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +19,7 @@ import java.nio.charset.Charset;
 
 @RestController
 @RequestMapping("/map")
+@Slf4j
 public class MapController {
 
     /**
@@ -22,19 +27,22 @@ public class MapController {
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/{keyWord}")
-    public String keyWordToAddr(@PathVariable String keyWord) throws UnsupportedEncodingException {
+    public ResponseEntity<String> keyWordToAddr(@PathVariable String keyWord) throws UnsupportedEncodingException {
         System.out.println(keyWord);
         String url = "https://dapi.kakao.com/v2/local/search/keyword.json?page=1&size=15&sort=accuracy&query="
                 + URLEncoder.encode(keyWord, "UTF-8");
         String data = "";
         try{
             data = getJSONData(url);
-            //LOGGER.info(addr);
+            log.info("data {}", data);
         }catch(Exception e){
             System.out.println("주소 api 요청 에러");
             e.printStackTrace();
         }
-        return data;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Access-Control-Allow-Origin", "*");
+        return new ResponseEntity<String>(data, headers,HttpStatus.OK);
     }
 
     /**
