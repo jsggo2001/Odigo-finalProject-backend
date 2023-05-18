@@ -1,6 +1,7 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +20,16 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public boolean registBoard(Board board){
+    public boolean registBoard(BoardDTO BoardDTO){
+
+        Board board = new Board();
+        System.out.println(BoardDTO);
+
+        board.setUser(BoardDTO.getUser());
+        board.setTitle(BoardDTO.getTitle());
+        board.setContent(BoardDTO.getContent());
+        board.setCount(BoardDTO.getCount());
+
         board.setCount(0L);
         try {
             boardRepository.registerBoard(board);

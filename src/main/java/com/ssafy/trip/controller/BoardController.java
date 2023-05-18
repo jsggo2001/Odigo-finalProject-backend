@@ -42,19 +42,12 @@ public class BoardController {
 
     @PostMapping
     private ResponseEntity<?> registerBoard(@RequestBody BoardDTO BoardDTO){
-        Board board = new Board();
-        System.out.println(BoardDTO);
 
-        board.setUser(BoardDTO.getUser());
-        board.setTitle(BoardDTO.getTitle());
-        board.setContent(BoardDTO.getContent());
-        board.setCount(BoardDTO.getCount());
-
-        boardService.registBoard(board);
+        boardService.registBoard(BoardDTO);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{boardId}")
+    @PutMapping
     private ResponseEntity<?> updateBoard(@RequestBody BoardFormDTO boardFormDTO){
         System.out.println(boardFormDTO);
         boardService.updateBoard(boardFormDTO);
