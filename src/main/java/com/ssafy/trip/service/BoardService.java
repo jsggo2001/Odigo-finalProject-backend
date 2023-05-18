@@ -1,6 +1,7 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.repository.board.BoardRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -51,6 +53,7 @@ public class BoardService {
 
     @Transactional
     public void updateBoard(BoardFormDTO boardFormDto){
+        System.out.println(boardFormDto.getId());
         Board board = boardRepository.findById(boardFormDto.getId()).get();
         board.setContent(boardFormDto.getContent());
         board.setTitle(boardFormDto.getTitle());

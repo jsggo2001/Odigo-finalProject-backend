@@ -47,7 +47,7 @@ public class BoardController {
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping
+    @PutMapping("/{boardId}")
     private ResponseEntity<?> updateBoard(@RequestBody BoardFormDTO boardFormDTO){
         System.out.println(boardFormDTO);
         boardService.updateBoard(boardFormDTO);
