@@ -1,7 +1,12 @@
 package com.ssafy.trip.service;
 
+import com.ssafy.trip.domain.user.Auth;
 import com.ssafy.trip.domain.user.User;
+import com.ssafy.trip.dto.user.TokenResponse;
+import com.ssafy.trip.dto.user.UserRegisterDTO;
 import com.ssafy.trip.dto.user.UserUpdateFormDTO;
+import com.ssafy.trip.jwt.JwtTokenProvider;
+import com.ssafy.trip.repository.user.AuthRepository;
 import com.ssafy.trip.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,12 +20,35 @@ import java.util.List;
 public class UserService {
 
 	private final UserRepository userRepository;
+	private final JwtTokenProvider jwtTokenProvider;
+	private final AuthRepository authRepository;
 	
 	@Transactional //readonly false
-	public Long join(User user) {
+	public TokenResponse join(UserRegisterDTO form) {
+		User user = new User();
+		user.setLoginId(form.getLoginId());
+		user.setMail(form.getMail());
+		user.setName(form.getName());
+		user.setPassword(form.getPassword());
+		user.setPhoneNumber(form.getPhoneNumber());
+		user.setNickName(form.getNickName());
 		validateDuplicateUser(user);
 		userRepository.save(user);
-		return user.getId();
+
+		String accessToken = jwtTokenProvider.createAccessToken(user.getLoginId());
+		String refreshToken = jwtTokenProvider.createRefreshToken(user.getLoginId());
+
+		Auth auth = Auth.builder()
+				.user(user)
+				.refreshToken(refreshToken)
+				.build();
+
+		authRepository.save(auth);
+
+		return TokenResponse.builder()
+				.ACCESS_TOKEN(accessToken)
+				.REFRESH_TOKEN(refreshToken)
+				.build();
 	}
 
 	// Duplicate check

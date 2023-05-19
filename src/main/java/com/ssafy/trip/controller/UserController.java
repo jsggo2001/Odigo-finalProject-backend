@@ -1,6 +1,7 @@
 package com.ssafy.trip.controller;
 
 import com.ssafy.trip.domain.user.User;
+import com.ssafy.trip.dto.user.TokenResponse;
 import com.ssafy.trip.dto.user.UserDTO;
 import com.ssafy.trip.dto.user.UserRegisterDTO;
 import com.ssafy.trip.dto.user.UserUpdateFormDTO;
@@ -44,15 +45,8 @@ public class UserController {
     }
 
     @PostMapping
-    private void register(@ModelAttribute UserRegisterDTO form) {
-        User user = new User();
-        user.setLoginId(form.getLoginId());
-        user.setMail(form.getMail());
-        user.setName(form.getName());
-        user.setPassword(form.getPassword());
-        user.setPhoneNumber(form.getPhoneNumber());
-        user.setNickName(form.getNickName());
-        userService.join(user);
+    private TokenResponse register(@ModelAttribute UserRegisterDTO form) {
+        return userService.join(form);
     }
 
     @PutMapping("/{userId}")

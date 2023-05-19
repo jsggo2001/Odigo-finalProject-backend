@@ -35,8 +35,7 @@ public class CommentController {
                         comment.getUser().getName(),
                         comment.getBoard().getId(),
                         comment.getContent(), comment.getHeart(),
-                        comment.getFilePath(),
-                        comment.getModifiedDate())));
+                        comment.getFilePath())));
 
         return new ResponseEntity<>(commentList, HttpStatus.OK);
     }

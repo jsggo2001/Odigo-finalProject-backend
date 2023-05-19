@@ -17,7 +17,4 @@ public class CommentFormDTO {
 
     private String filePath; // img
 
-    private LocalDateTime modifiedDate;
-
-
 }

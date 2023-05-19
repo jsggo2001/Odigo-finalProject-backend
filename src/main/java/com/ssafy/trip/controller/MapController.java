@@ -51,6 +51,7 @@ public class MapController {
 
         //인증키 - KakaoAK하고 한 칸 띄워주셔야해요!
         String apiKey = "18110217fe110646452c694fa334a817";
+
         String auth = "KakaoAK " + apiKey;
         //URL 설정
         URL url = new URL(apiUrl);

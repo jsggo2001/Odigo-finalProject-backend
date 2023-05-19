@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/plan")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin
 public class PlanController {
 
     private final PlanService planService;
