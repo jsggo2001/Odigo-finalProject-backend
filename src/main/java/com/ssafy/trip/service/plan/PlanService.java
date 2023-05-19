@@ -48,8 +48,10 @@ public class PlanService {
 
     @Transactional
     public void saveRoutes(RouteRequest[] routeRequests, Plan plan) {
+        int idx = 0;
         for (RouteRequest routeRequest : routeRequests) {
-            routeService.save(routeRequest , plan);
+            routeService.save(routeRequest , plan, idx);
+            idx += 1;
         }
 
     }

@@ -17,10 +17,12 @@ public class RouteService {
     private final RouteRepository routeRepository;
 
     @Transactional
-    public RouteResponse save(RouteRequest request, Plan plan) {
+    public RouteResponse save(RouteRequest request, Plan plan, int idx) {
 
-        Route route = Route.builder().name(request.getName()).sequence(request.getSequence())
-                        .latitude(request.getLatitude()).longitude(request.getLongitude()).build();
+        Route route = Route.builder().name(request.getPlace_name()).sequence(idx)
+                        .latitude(request.getX()).longitude(request.getY())
+                .address(request.getAddress_name()).url(request.getPlace_url()).cost(request.getCost())
+                .build();
         route.addPlan(plan);
         routeRepository.save(route);
 

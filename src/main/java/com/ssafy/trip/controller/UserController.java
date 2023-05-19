@@ -1,9 +1,9 @@
 package com.ssafy.trip.controller;
 
 import com.ssafy.trip.domain.user.User;
-import com.ssafy.trip.dto.UserDTO;
-import com.ssafy.trip.dto.UserRegisterDTO;
-import com.ssafy.trip.dto.UserUpdateFormDTO;
+import com.ssafy.trip.dto.user.UserDTO;
+import com.ssafy.trip.dto.user.UserRegisterDTO;
+import com.ssafy.trip.dto.user.UserUpdateFormDTO;
 import com.ssafy.trip.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

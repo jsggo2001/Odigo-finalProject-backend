@@ -10,8 +10,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class RouteRequest {
-    private String name;
-    private int sequence;
-    private float latitude;
-    private float longitude;
+    private long id;
+    private String place_name;
+    private float x;
+    private float y;
+    private int cost;
+    private String address_name;
+    private String place_url;
 }

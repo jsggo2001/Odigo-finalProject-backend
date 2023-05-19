@@ -1,7 +1,7 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.user.User;
-import com.ssafy.trip.dto.UserUpdateFormDTO;
+import com.ssafy.trip.dto.user.UserUpdateFormDTO;
 import com.ssafy.trip.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

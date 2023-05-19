@@ -18,6 +18,7 @@ public class Route {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plan_id")
     private Plan plan;
+
     public void addPlan(Plan plan) {
         this.plan = plan;
         this.plan.getRoutes().add(this);
@@ -31,5 +32,9 @@ public class Route {
 
     private float longitude;
 
+    private int cost;
 
+    private String address;
+
+    private String url;
 }
