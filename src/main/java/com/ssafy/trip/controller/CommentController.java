@@ -1,6 +1,5 @@
 package com.ssafy.trip.controller;
 
-import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.CommentDTO;
 import com.ssafy.trip.dto.board.CommentFormDTO;
@@ -22,7 +21,6 @@ public class CommentController {
 
     private final CommentService commentService;
     private final BoardService boardService;
-
 
     @GetMapping
     private ResponseEntity<List<CommentDTO>> getComments(){

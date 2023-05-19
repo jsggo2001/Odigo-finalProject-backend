@@ -1,4 +1,4 @@
-package com.ssafy.trip.exception;
+package com.ssafy.trip.interceptor;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

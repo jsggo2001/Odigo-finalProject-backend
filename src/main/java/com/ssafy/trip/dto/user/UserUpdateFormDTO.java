@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class UserUpdateFormDTO {
+	private Long id;
 	
 	private String loginId;
 	

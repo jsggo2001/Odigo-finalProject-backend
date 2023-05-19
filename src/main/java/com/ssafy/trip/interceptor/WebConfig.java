@@ -14,20 +14,20 @@ import javax.servlet.ServletContextListener;
 @RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
 
-//    private final JwtTokenInterceptor jwtTokenInterceptor;
-//
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/**");
-//
-//        //excludePathPatterns(); 으로 뚤릴 패스 정의
-//    }
+    private final JwtTokenInterceptor jwtTokenInterceptor;
 
-    @Bean
-    public ServletListenerRegistrationBean<ServletContextListener> appInitListener() {
-        ServletListenerRegistrationBean<ServletContextListener> srb
-                = new ServletListenerRegistrationBean<>();
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/**")
+				.excludePathPatterns("/**");
 
-        srb.setListener(new AppInitListener());
-        return srb;
     }
+
+	@Bean
+	public ServletListenerRegistrationBean<ServletContextListener> appInitListener() {
+		ServletListenerRegistrationBean<ServletContextListener> srb
+				= new ServletListenerRegistrationBean<>();
+
+		srb.setListener(new AppInitListener());
+		return srb;
+	}
 }

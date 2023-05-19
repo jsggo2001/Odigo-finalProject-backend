@@ -2,7 +2,7 @@ package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.CommentFormDTO;
-import com.ssafy.trip.exception.NotFoundException;
+import com.ssafy.trip.interceptor.NotFoundException;
 import com.ssafy.trip.repository.board.CommentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
