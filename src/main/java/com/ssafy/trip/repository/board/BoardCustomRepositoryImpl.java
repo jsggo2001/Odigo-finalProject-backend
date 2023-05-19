@@ -1,6 +1,5 @@
 package com.ssafy.trip.repository.board;
 
-import com.ssafy.trip.domain.User;
 import com.ssafy.trip.domain.board.Board;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,7 @@
 package com.ssafy.trip.dto.board;
 
-<<<<<<< HEAD
-=======
-import com.ssafy.trip.domain.User;
+
 import lombok.Data;
->>>>>>> develop
 import lombok.Getter;
 import lombok.Setter;
 

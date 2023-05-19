@@ -1,10 +1,8 @@
 package com.ssafy.trip.domain.user;
 
 import com.ssafy.trip.domain.board.Board;
-<<<<<<< HEAD:src/main/java/com/ssafy/trip/domain/user/User.java
 import com.ssafy.trip.domain.plan.UserPlan;
-=======
->>>>>>> develop:src/main/java/com/ssafy/trip/domain/User.java
+
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,11 +18,7 @@ import java.util.List;
 @ToString
 @Builder
 @NoArgsConstructor
-<<<<<<< HEAD:src/main/java/com/ssafy/trip/domain/user/User.java
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
-=======
 @AllArgsConstructor
->>>>>>> develop:src/main/java/com/ssafy/trip/domain/User.java
 @EntityListeners(AuditingEntityListener.class)
 public class User {
 

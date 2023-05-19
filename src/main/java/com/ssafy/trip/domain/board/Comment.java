@@ -1,15 +1,10 @@
 package com.ssafy.trip.domain.board;
 
-<<<<<<< HEAD
+
 import com.ssafy.trip.domain.user.User;
-=======
-import com.ssafy.trip.domain.User;
-import com.sun.istack.NotNull;
 import lombok.Data;
->>>>>>> develop
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
