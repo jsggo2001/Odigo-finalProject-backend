@@ -1,6 +1,6 @@
-package com.ssafy.trip.repository;
+package com.ssafy.trip.repository.user;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 
 import java.util.List;
 

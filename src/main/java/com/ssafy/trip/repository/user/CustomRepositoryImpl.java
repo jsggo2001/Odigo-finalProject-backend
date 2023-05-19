@@ -1,6 +1,6 @@
-package com.ssafy.trip.repository;
+package com.ssafy.trip.repository.user;
 
-import com.ssafy.trip.domain.User;
+import com.ssafy.trip.domain.user.User;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

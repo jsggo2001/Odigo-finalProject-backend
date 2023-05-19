@@ -1,23 +1,23 @@
 package com.ssafy.trip.dto.board;
 
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
 @Data
-public class BoardFormDTO {
-
+public class CommentFormDTO {
     private Long id;
 
-    private String title;
+    private Long userId;
+    private Long boardId;
 
     private String content;
 
+    private Long heart; // 좋아요수
+
+    private String filePath; // img
+
     private LocalDateTime modifiedDate;
+
 
 }

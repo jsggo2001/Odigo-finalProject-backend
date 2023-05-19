@@ -26,7 +26,10 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
                 .getResultList();
 
     }
-
+    @Override
+    public Board getBoard(Long id) {
+        return em.find(Board.class, id);
+    }
     @Override
     public void registerBoard(Board board){
         em.persist(board);

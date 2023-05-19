@@ -1,16 +1,15 @@
 package com.ssafy.trip.controller;
 
-import com.ssafy.trip.domain.User;
-import com.ssafy.trip.dto.UserDTO;
-import com.ssafy.trip.dto.UserRegisterDTO;
-import com.ssafy.trip.dto.UserUpdateFormDTO;
+import com.ssafy.trip.domain.user.User;
+import com.ssafy.trip.dto.user.UserDTO;
+import com.ssafy.trip.dto.user.UserRegisterDTO;
+import com.ssafy.trip.dto.user.UserUpdateFormDTO;
 import com.ssafy.trip.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class UserController {
     @PostMapping("/login")
     private boolean login(@RequestParam String loginId, @RequestParam String password) {
 
-        User user = userService.getUser(loginId);
+        User user = userService.findUserByName(loginId);
         if (user != null && user.getPassword().equals(password)) {
             return true;
         }

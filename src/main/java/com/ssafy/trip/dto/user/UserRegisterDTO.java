@@ -1,4 +1,4 @@
-package com.ssafy.trip.dto;
+package com.ssafy.trip.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;

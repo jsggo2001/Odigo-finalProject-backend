@@ -1,8 +1,8 @@
 package com.ssafy.trip.service;
 
-import com.ssafy.trip.domain.User;
-import com.ssafy.trip.dto.UserUpdateFormDTO;
-import com.ssafy.trip.repository.UserRepository;
+import com.ssafy.trip.domain.user.User;
+import com.ssafy.trip.dto.user.UserUpdateFormDTO;
+import com.ssafy.trip.repository.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class UserService {
 	@Transactional //readonly false
 	public Long join(User user) {
 		validateDuplicateUser(user);
-		userRepository.customSave(user);
+		userRepository.save(user);
 		return user.getId();
 	}
 
@@ -40,7 +40,7 @@ public class UserService {
         return userRepository.customFindOne(userId);
     }
 
-	public User getUser(String loginId) {
+	public User findUserByName(String loginId) {
 		return userRepository.customGetUser(loginId);
 	}
 
