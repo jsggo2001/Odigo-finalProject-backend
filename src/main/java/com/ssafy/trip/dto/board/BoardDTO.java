@@ -4,6 +4,7 @@ import com.ssafy.trip.domain.user.User;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter @Setter
 @AllArgsConstructor
@@ -20,8 +21,8 @@ public class BoardDTO {
 
         private Long count; // 조회수
 
-        private LocalDate createdDate;
+        private LocalDateTime createdDate;
 
-        private LocalDate modifiedDate;
+        private LocalDateTime modifiedDate;
 
 }

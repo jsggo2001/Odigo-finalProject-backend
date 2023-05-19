@@ -2,7 +2,10 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+<<<<<<< HEAD
       use-new-id-generator-mappings : false
+=======
+>>>>>>> develop
     properties:
       hibernate:
         show_sql: true

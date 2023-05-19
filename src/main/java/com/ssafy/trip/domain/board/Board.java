@@ -4,12 +4,14 @@ import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -36,9 +38,9 @@ public class Board {
 
     @CreatedDate
     @Column(name = "created_date", updatable = false)
-    private LocalDate createdDate;
+    private LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "modified_date")
-    private LocalDate modifiedDate;
+    private LocalDateTime modifiedDate;
 }

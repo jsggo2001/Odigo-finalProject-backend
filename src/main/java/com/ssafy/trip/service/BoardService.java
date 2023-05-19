@@ -1,12 +1,15 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.board.Comment;
+import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.repository.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 
@@ -19,7 +22,17 @@ public class BoardService {
     private final BoardRepository boardRepository;
 
     @Transactional
-    public boolean registBoard(Board board){
+    public boolean registBoard(BoardDTO BoardDTO){
+
+        Board board = new Board();
+        System.out.println(BoardDTO);
+
+        board.setUser(BoardDTO.getUser());
+        board.setTitle(BoardDTO.getTitle());
+        board.setContent(BoardDTO.getContent());
+        board.setCount(BoardDTO.getCount());
+
+        board.setCount(0L);
         try {
             boardRepository.registerBoard(board);
             log.debug("registBoard: "+ board);
@@ -32,6 +45,7 @@ public class BoardService {
 
     public List<Board> getBoards(){return boardRepository.findAll(); }
 
+    public Board getBoard(Long id){return boardRepository.getBoard(id); }
     @Transactional
     public List<Board> getBoardsByTitle(String title){
         return boardRepository.getBoardsByName(title);
@@ -39,6 +53,7 @@ public class BoardService {
 
     @Transactional
     public void updateBoard(BoardFormDTO boardFormDto){
+        System.out.println(boardFormDto.getId());
         Board board = boardRepository.findById(boardFormDto.getId()).get();
         board.setContent(boardFormDto.getContent());
         board.setTitle(boardFormDto.getTitle());
@@ -49,6 +64,13 @@ public class BoardService {
         boardRepository.deleteById(id);
     }
 
+    @Transactional
+    public void increaseBoardCnt(Long id){
+        Board board = boardRepository.getBoard(id);
+        System.out.println(board);
+       Long hit = board.getCount();
+       board.setCount(hit+1);
+    }
 
 
 
