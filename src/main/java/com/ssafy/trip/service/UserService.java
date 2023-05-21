@@ -153,6 +153,7 @@ public class UserService {
                 }
             } else {
                 //입력으로 들어온 Refresh 토큰이 유효하지 않음
+                System.out.println("토큰 만료");
                 throw new Exception("토큰이 유효하지 않습니다");
             }
         }

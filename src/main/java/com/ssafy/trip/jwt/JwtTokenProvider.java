@@ -20,8 +20,9 @@ public class JwtTokenProvider {
     @Value("${secret.refresh}")
     private String REFRESH_KEY;// = "ref";
 
-    private final long ACCESS_TOKEN_VALID_TIME = 20 * 60 * 1000L;   // 20분
+    private final long ACCESS_TOKEN_VALID_TIME = 1 * 60 * 1000L;   // 1분
     private final long REFRESH_TOKEN_VALID_TIME = 60 * 60 * 24 * 7 * 1000L;   // 1주
+//    private final long REFRESH_TOKEN_VALID_TIME = 1 * 60 * 1000L;   // 1분
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
     @PostConstruct
