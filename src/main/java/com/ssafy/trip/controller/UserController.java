@@ -50,13 +50,13 @@ public class UserController {
     }
 
     // refresh 토큰 대신 인덱스를 반환하는 회원가입
-    @PostMapping("/joinindex")
-    public ResponseEntity join2(@RequestBody UserRequest userRequest) {
-        if(userService.findByLoginId(userRequest.getUserId()).isPresent())
-            return ResponseEntity.badRequest().build();
-        else
-            return ResponseEntity.ok(userService.registerIndex(userRequest));
-    }
+//    @PostMapping("/joinindex")
+//    public ResponseEntity join2(@RequestBody UserRequest userRequest) {
+//        if(userService.findByLoginId(userRequest.getUserId()).isPresent())
+//            return ResponseEntity.badRequest().build();
+//        else
+//            return ResponseEntity.ok(userService.registerIndex(userRequest));
+//    }
 
     //Access Token을 재발급 위한 api (refresh 토큰 인덱스를 통한 재발급)
     @PostMapping("/issueindex")
