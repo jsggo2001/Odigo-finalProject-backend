@@ -1,7 +1,6 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Board;
-import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.repository.board.BoardRepository;

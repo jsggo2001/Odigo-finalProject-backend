@@ -28,7 +28,7 @@
 		<include refid="basicTravelSQL"></include>
 		 <where>
  		 	<if test="sido_code != null and sido_code != '' and sido_code.length()>0">
- 		 		sido_code like  #{sido_code}
+ 		 		sido_code =  #{sido_code}
  		 	</if>
  		 	<if test="content_type_id != null and content_type_id != '' and content_type_id.length()>0">
  		 		and content_type_id = #{content_type_id}
