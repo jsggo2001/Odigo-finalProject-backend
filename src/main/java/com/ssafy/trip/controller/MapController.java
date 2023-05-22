@@ -24,6 +24,7 @@ public class MapController {
      * @throws UnsupportedEncodingException
      */
     @GetMapping("/{keyWord}")
+    @CrossOrigin
     public ResponseEntity<String> keyWordToAddr(@PathVariable String keyWord) throws UnsupportedEncodingException {
         System.out.println(keyWord);
         String url = "https://dapi.kakao.com/v2/local/search/keyword.json?page=1&size=15&sort=accuracy&query="
@@ -38,7 +39,7 @@ public class MapController {
         }
 
         HttpHeaders headers = new HttpHeaders();
-        headers.add("Access-Control-Allow-Origin", "*");
+//        headers.add("Access-Control-Allow-Origin", "*");
         return new ResponseEntity<String>(data, headers,HttpStatus.OK);
     }
 

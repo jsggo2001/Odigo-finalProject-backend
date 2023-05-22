@@ -4,6 +4,7 @@ import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.board.CommentFormDTO;
+import com.ssafy.trip.dto.user.UserRegisterDTO;
 import com.ssafy.trip.repository.board.BoardRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,11 @@ class CommentServiceTest {
 
     @Test
     void registerTest() {
-        User user = User.builder().loginId("test").mail("asd@asd").password("1234")
+        UserRegisterDTO userDto = UserRegisterDTO.builder().loginId("test2").mail("asd@asd").password("1234")
                 .phoneNumber("123-1231-1231").nickName("sadw2").build();
-        userService.join(user);
 
+        userService.join(userDto);
+        User user = userService.findByLoginId(userDto.getLoginId()).get();
         Board board = new Board();
         boardRepository.save(board);
 
@@ -50,9 +52,11 @@ class CommentServiceTest {
 
     @Test
     void getCommentTest() {
-        User user = User.builder().loginId("test").mail("asd@asd").password("1234")
+        UserRegisterDTO userDto = UserRegisterDTO.builder().loginId("test").mail("asd@asd").password("1234")
                 .phoneNumber("123-1231-1231").nickName("sadw2").build();
-        userService.join(user);
+
+        userService.join(userDto);
+        User user = userService.findByLoginId(userDto.getLoginId()).get();
 
         Board board = new Board();
         boardRepository.save(board);
