@@ -38,6 +38,11 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
         }
 
         response.setStatus(401);
+        if (jwtTokenProvider.isValidAccessToken(accessToken) == false) {
+            response.setStatus(403);
+        } else {
+            response.setStatus(401);
+        }
         response.setHeader("ACCESS_TOKEN", accessToken);
         response.setHeader("REFRESH_TOKEN", refreshToken);
         response.setHeader("msg", "Check the tokens.");

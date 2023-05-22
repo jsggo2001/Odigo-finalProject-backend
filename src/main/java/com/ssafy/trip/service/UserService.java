@@ -128,6 +128,7 @@ public class UserService {
 
 
     public TokenResponse issueAccessToken(HttpServletRequest request) throws Exception {
+        System.out.println("issyy");
         String accessToken = jwtTokenProvider.resolveAccessToken(request);
         String refreshToken = jwtTokenProvider.resolveRefreshToken(request);
         System.out.println("accessToken = " + accessToken);
