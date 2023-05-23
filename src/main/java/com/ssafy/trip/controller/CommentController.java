@@ -22,11 +22,15 @@ public class CommentController {
     private final CommentService commentService;
     private final BoardService boardService;
 
-    @GetMapping
-    private ResponseEntity<List<CommentDTO>> getComments(){
-        List<Comment> comments = commentService.getComments();
-        List<CommentDTO> commentList = new ArrayList<>();
+    @GetMapping("/list/{boardId}")
+    private ResponseEntity<List<CommentDTO>> getComments(@PathVariable Long boardId){
 
+        System.out.println("comment getComments============");
+        List<CommentDTO> commentList = new ArrayList<>();
+        List<Comment> comments = boardService.getBoard(boardId).getComments();
+//        List<Comment> comments = commentService.getComments();
+//        List<CommentDTO> commentList = new ArrayList<>();
+//
         comments.stream().forEach(comment ->
                 commentList.add(new CommentDTO(comment.getId(),
                         comment.getUser().getLoginId(),
@@ -39,7 +43,8 @@ public class CommentController {
     }
 
     @GetMapping("/{commentId}")
-    private ResponseEntity<CommentDTO> getBoard(@PathVariable Long commentId){
+    private ResponseEntity<CommentDTO> getComment(@PathVariable Long commentId){
+        System.out.println("comment getComment============");
         Comment comment = commentService.getComment(commentId);
         CommentDTO commentDto = new CommentDTO();
         commentDto.setId(commentId);

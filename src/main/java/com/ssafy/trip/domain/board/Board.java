@@ -45,8 +45,7 @@ public class Board {
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
 
-
-//    @OneToMany(mappedBy ="board")
-//    private List<Comment> comments = new ArrayList<>();
+    @OneToMany(mappedBy ="board")
+    private List<Comment> comments = new ArrayList<>();
 
 }
