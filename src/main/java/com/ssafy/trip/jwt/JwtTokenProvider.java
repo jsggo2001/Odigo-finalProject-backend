@@ -108,7 +108,7 @@ public class JwtTokenProvider {
     }
 
     // board get userId
-    public Object getUserId(String token){
+    public Object getLoginId(String token){
         try {
             Claims accessClaims = getClaimsFormToken(token);
             System.out.println("Access expireTime: " + accessClaims.getExpiration());

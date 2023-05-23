@@ -1,27 +1,27 @@
 package com.ssafy.trip.domain.hotplace;
 
-import com.ssafy.trip.domain.board.Board;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Blob;
 
 @Entity
 @Getter
 @Setter
-@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FileInfo {
-    private String saveFolder;
+
+   // @Lob
     private String originFile;
-    private String saveFile;
-
-
     @Id
+    @GeneratedValue
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hot_place_id")
     private HotPlace hotPlace;
+
 
 }

@@ -2,35 +2,26 @@ package com.ssafy.trip.dto.hotplace;
 
 import com.ssafy.trip.domain.hotplace.FileInfo;
 import com.ssafy.trip.domain.user.User;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.OneToMany;
-import java.sql.Blob;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class HotPlaceDTO {
+@Builder
+public class HotPlaceResponseDTO {
 
         private Long id;
-
-        private User user;
-
+        private String loginId;
         private String title;
-
         private String content;
 
         private Long count; // 조회수
         private Long heart; // 좋아요수
 
-        private List<String> fileInfos;
-
-        private LocalDateTime createdDate;
+        private List<FileInfo> fileInfos;
 
         private LocalDateTime modifiedDate;
 
