@@ -13,7 +13,7 @@ public class BoardDTO {
 
         private Long id;
 
-        private User user;
+        private String loginId;
 
         private String title;
 

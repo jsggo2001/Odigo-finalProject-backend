@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class BoardController {
         List<BoardDTO> boardList = new ArrayList<>();
 
         boardLists.stream().forEach(findBoard ->
-                boardList.add(new BoardDTO(findBoard.getId(), findBoard.getUser(),
+                boardList.add(new BoardDTO(findBoard.getId(), findBoard.getUser().getLoginId(),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getCreatedDate(), findBoard.getModifiedDate())));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
@@ -47,9 +48,9 @@ public class BoardController {
     }
 
     @PostMapping
-    private ResponseEntity<?> registerBoard(@RequestBody BoardDTO BoardDTO){
+    private ResponseEntity<?> registerBoard(HttpServletRequest request, @RequestBody BoardFormDTO boardFormDTO){
 
-        boardService.registBoard(BoardDTO);
+        boardService.registBoard(request, boardFormDTO);
         return ResponseEntity.ok().build();
     }
 

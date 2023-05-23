@@ -48,7 +48,7 @@ public class HotPlaceService {
         hotBoard.setUser(userService.findByLoginId(loginId).get());
         hotBoard.setTitle(boardDTO.getTitle());
         hotBoard.setContent(boardDTO.getContent());
-        System.out.println("boardDTO.getFileInfos()" + boardDTO.getFileInfos());
+        //System.out.println("boardDTO.getFileInfos()" + boardDTO.getFileInfos());
 
         for (String file : boardDTO.getFileInfos()) {
             FileInfo info = FileInfo

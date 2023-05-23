@@ -13,7 +13,8 @@ import java.sql.Blob;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class FileInfo {
 
-   // @Lob
+    @Lob
+    @Column(length=10000, columnDefinition = "LONGBLOB")
     private String originFile;
     @Id
     @GeneratedValue

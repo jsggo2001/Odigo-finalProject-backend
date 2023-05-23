@@ -3,13 +3,16 @@ package com.ssafy.trip.service;
 import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
+import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.board.BoardRepository;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -19,19 +22,30 @@ import java.util.List;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Transactional
-    public boolean registBoard(BoardDTO BoardDTO){
+    public boolean registBoard(HttpServletRequest request, BoardFormDTO boardFormDTO){
+
+        String accessToken = request.getHeader("Access_token");
+        System.out.println(accessToken);
+        Claims accessClaims = jwtTokenProvider.getClaimsFormToken(accessToken);
+        String loginId = (String) accessClaims.get("userId");
+        System.out.println("loginId      =>  " + loginId);
+
+
 
         Board board = new Board();
-        System.out.println(BoardDTO);
+        System.out.println(boardFormDTO);
 
-        board.setUser(BoardDTO.getUser());
-        board.setTitle(BoardDTO.getTitle());
-        board.setContent(BoardDTO.getContent());
-        board.setCount(BoardDTO.getCount());
 
+        board.setUser(userService.findByLoginId(loginId).get());
+        board.setTitle(boardFormDTO.getTitle());
+        board.setContent(boardFormDTO.getContent());
+        
         board.setCount(0L);
+
         try {
             boardRepository.registerBoard(board);
             log.debug("registBoard: "+ board);

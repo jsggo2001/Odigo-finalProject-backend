@@ -1,5 +1,6 @@
 package com.ssafy.trip.domain.hotplace;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,7 @@ public class HotPlace {
     private Long count; // 조회수
     private Long heart; // 좋아요수
 
+    @JsonIgnore
     @OneToMany(mappedBy ="hotPlace")
     private List<FileInfo> fileInfos = new ArrayList<>();;
 
