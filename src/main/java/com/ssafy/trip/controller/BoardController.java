@@ -34,17 +34,25 @@ public class BoardController {
         List<BoardDTO> boardList = new ArrayList<>();
 
         boardLists.stream().forEach(findBoard ->
-                boardList.add(new BoardDTO(findBoard.getId(), findBoard.getUser().getLoginId(),
+                boardList.add(new BoardDTO(findBoard.getId(), findBoard.getUser().getNickName(),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getCreatedDate(), findBoard.getModifiedDate())));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    private ResponseEntity<Board> getBoard(@PathVariable Long id){
+    private ResponseEntity<BoardDTO> getBoard(@PathVariable Long id){
         Board board = boardService.getBoard(id);
+        BoardDTO dto = BoardDTO.builder()
+                .id(board.getId())
+                .nickName(board.getUser().getNickName())
+                .count(board.getCount())
+                .content(board.getContent())
+                .title(board.getTitle())
+                .modifiedDate(board.getModifiedDate())
+                .build();
         boardService.increaseBoardCnt(id);
-        return new ResponseEntity<>(board, HttpStatus.OK);
+        return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @PostMapping

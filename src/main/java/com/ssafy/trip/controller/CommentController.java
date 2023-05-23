@@ -29,7 +29,7 @@ public class CommentController {
 
         comments.stream().forEach(comment ->
                 commentList.add(new CommentDTO(comment.getId(),
-                        comment.getUser().getId(),
+                        comment.getUser().getLoginId(),
                         comment.getUser().getName(),
                         comment.getBoard().getId(),
                         comment.getContent(), comment.getHeart(),
@@ -48,7 +48,7 @@ public class CommentController {
         commentDto.setFilePath(comment.getFilePath());
         commentDto.setHeart(comment.getHeart());
         commentDto.setLoginId(comment.getUser().getLoginId());
-        commentDto.setUserId(comment.getUser().getId());
+        commentDto.setLoginId(comment.getUser().getLoginId());
         commentDto.setBoardId(comment.getBoard().getId());
         return new ResponseEntity<>(commentDto, HttpStatus.OK);
     }

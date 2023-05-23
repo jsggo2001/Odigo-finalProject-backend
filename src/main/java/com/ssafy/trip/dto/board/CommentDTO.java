@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private Long id;
 
-    private Long userId;
     private String loginId;
+    private String nickName;
     private Long boardId;
 
     private String content;

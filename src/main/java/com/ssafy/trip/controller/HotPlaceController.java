@@ -39,7 +39,7 @@ public class HotPlaceController {
         List<HotPlaceResponseDTO> boardList = new ArrayList<>();
 
         boardLists.stream().forEach(findBoard ->
-                boardList.add(new HotPlaceResponseDTO(findBoard.getId(), findBoard.getUser().getLoginId(),
+                boardList.add(new HotPlaceResponseDTO(findBoard.getId(), findBoard.getUser().getNickName(),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getHeart(), findBoard.getFileInfos(),
                         findBoard.getModifiedDate())));
@@ -51,7 +51,7 @@ public class HotPlaceController {
         HotPlace hotPlace = hotPlaceService.getBoard(id);
         HotPlaceResponseDTO dto = HotPlaceResponseDTO.builder()
                 .content(hotPlace.getContent())
-                .loginId(hotPlace.getUser().getLoginId())
+                .nickName(hotPlace.getUser().getNickName())
                 .heart(hotPlace.getHeart())
                 .fileInfos(hotPlace.getFileInfos())
                 .count(hotPlace.getCount())

@@ -14,7 +14,7 @@ import java.util.List;
 public class HotPlaceResponseDTO {
 
         private Long id;
-        private String loginId;
+        private String nickName;
         private String title;
         private String content;
 
