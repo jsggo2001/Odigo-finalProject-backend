@@ -70,8 +70,6 @@ public class HotPlaceController {
 
 
         hotPlaceService.registBoard(request, hotPlaceDTO);
-        System.out.println("register hotplace : "+ hotPlaceDTO.getFileInfos());
-
         return ResponseEntity.ok().build();
     }
 

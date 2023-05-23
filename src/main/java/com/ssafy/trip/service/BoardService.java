@@ -34,8 +34,6 @@ public class BoardService {
         String loginId = (String) accessClaims.get("userId");
         System.out.println("loginId      =>  " + loginId);
 
-
-
         Board board = new Board();
         System.out.println(boardFormDTO);
 
@@ -43,7 +41,7 @@ public class BoardService {
         board.setUser(userService.findByLoginId(loginId).get());
         board.setTitle(boardFormDTO.getTitle());
         board.setContent(boardFormDTO.getContent());
-        
+
         board.setCount(0L);
 
         try {

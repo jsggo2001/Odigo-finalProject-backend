@@ -39,7 +39,7 @@ public class HotPlace {
 
     @JsonIgnore
     @OneToMany(mappedBy ="hotPlace")
-    private List<FileInfo> fileInfos = new ArrayList<>();;
+    private List<FileInfo> fileInfos = new ArrayList<>();
 
     @CreatedDate
     @Column(name = "created_date", updatable = false)
