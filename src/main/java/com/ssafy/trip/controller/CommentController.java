@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,10 +35,11 @@ public class CommentController {
         comments.stream().forEach(comment ->
                 commentList.add(new CommentDTO(comment.getId(),
                         comment.getUser().getLoginId(),
-                        comment.getUser().getName(),
+                        comment.getUser().getNickName(),
                         comment.getBoard().getId(),
                         comment.getContent(), comment.getHeart(),
-                        comment.getFilePath())));
+                        comment.getFilePath(),
+                        comment.getModifiedDate())));
 
         return new ResponseEntity<>(commentList, HttpStatus.OK);
     }
@@ -53,14 +55,13 @@ public class CommentController {
         commentDto.setFilePath(comment.getFilePath());
         commentDto.setHeart(comment.getHeart());
         commentDto.setLoginId(comment.getUser().getLoginId());
-        commentDto.setLoginId(comment.getUser().getLoginId());
         commentDto.setBoardId(comment.getBoard().getId());
         return new ResponseEntity<>(commentDto, HttpStatus.OK);
     }
 
     @PostMapping
-    private ResponseEntity<?> registerComment(@RequestBody CommentFormDTO commentFormDTO){
-        commentService.registerComment(commentFormDTO);
+    private ResponseEntity<?> registerComment(HttpServletRequest request, @RequestBody CommentFormDTO commentFormDTO){
+        commentService.registerComment(request, commentFormDTO);
         return ResponseEntity.ok().build();
     }
 

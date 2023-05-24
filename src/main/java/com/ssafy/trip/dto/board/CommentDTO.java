@@ -21,4 +21,6 @@ public class CommentDTO {
     private Long heart; // 좋아요수
 
     private String filePath; // img
+
+    private LocalDateTime modifiedDate;
 }
