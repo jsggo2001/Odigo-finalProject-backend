@@ -42,7 +42,10 @@ public class HotPlaceController {
                 boardList.add(new HotPlaceResponseDTO(findBoard.getId(), findBoard.getUser().getNickName(),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getHeart(), findBoard.getFileInfos(),
-                        findBoard.getModifiedDate())));
+                        findBoard.getModifiedDate(), findBoard.getUrl(),
+                        findBoard.getLat(),
+                        findBoard.getLon(), findBoard.getPlaceName(),
+                        findBoard.getPlaceName())));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
     }
 
@@ -58,6 +61,11 @@ public class HotPlaceController {
                 .modifiedDate(hotPlace.getModifiedDate())
                 .id(hotPlace.getId())
                 .title(hotPlace.getTitle())
+                .lat(hotPlace.getLat())
+                .lon(hotPlace.getLon())
+                .url(hotPlace.getUrl())
+                .roadName(hotPlace.getRoadName())
+                .placeName(hotPlace.getPlaceName())
                 .build();
 
 
@@ -67,8 +75,6 @@ public class HotPlaceController {
 
     @PostMapping
     private ResponseEntity<?> registerBoard(HttpServletRequest request, @RequestBody HotPlaceDTO hotPlaceDTO) throws IOException {
-
-
         hotPlaceService.registBoard(request, hotPlaceDTO);
         return ResponseEntity.ok().build();
     }

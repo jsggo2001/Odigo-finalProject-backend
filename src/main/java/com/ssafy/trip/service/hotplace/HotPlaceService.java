@@ -52,6 +52,11 @@ public class HotPlaceService {
         //System.out.println("boardDTO.getFileInfos()" + boardDTO.getFileInfos());
         hotBoard.setCount(0L);
         hotBoard.setHeart(0L);
+        hotBoard.setLat(boardDTO.getLat());
+        hotBoard.setLon(boardDTO.getLon());
+        hotBoard.setPlaceName(boardDTO.getPlaceName());
+        hotBoard.setRoadName(boardDTO.getRoadName());
+        hotBoard.setUrl(boardDTO.getUrl());
         for (String file : boardDTO.getFileInfos()) {
             FileInfo info = FileInfo
             .builder()
@@ -61,9 +66,6 @@ public class HotPlaceService {
             fileInfoRepository.save(info);
         }
 
-
-        hotBoard.setCount(0L);
-        hotBoard.setHeart(0L);
         try {
             hotBoardRepository.registerBoard(hotBoard);
             log.debug("registHotplace: "+ hotBoard);
@@ -88,6 +90,11 @@ public class HotPlaceService {
         HotPlace hotPlace = hotBoardRepository.findById(hotPlaceRegisterDTO.getId()).get();
         hotPlace.setContent(hotPlaceRegisterDTO.getContent());
         hotPlace.setTitle(hotPlaceRegisterDTO.getTitle());
+        hotPlace.setLat(hotPlaceRegisterDTO.getLat());
+        hotPlace.setLon(hotPlaceRegisterDTO.getLon());
+        hotPlace.setPlaceName(hotPlaceRegisterDTO.getPlaceName());
+        hotPlace.setRoadName(hotPlaceRegisterDTO.getRoadName());
+        hotPlace.setUrl(hotPlaceRegisterDTO.getUrl());
     }
 
     @Transactional

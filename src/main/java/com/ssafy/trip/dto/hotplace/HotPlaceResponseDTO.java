@@ -25,4 +25,9 @@ public class HotPlaceResponseDTO {
 
         private LocalDateTime modifiedDate;
 
+        private String url;
+        private Double lat;
+        private Double lon;
+        private String placeName;
+        private String roadName;
 }
