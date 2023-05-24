@@ -101,7 +101,7 @@ public class JwtTokenProvider {
         try {
             Claims accessClaims = getClaimsFormToken(token);
             System.out.println("Access expireTime: " + accessClaims.getExpiration());
-            System.out.println("Access userId: " + accessClaims.get("userId"));
+            System.out.println("Access loginId: " + accessClaims.get("userId"));
             return true;
         } catch (ExpiredJwtException exception) {
             System.out.println("Token Expired UserID : " + exception.getClaims().get("userId"));
@@ -112,6 +112,25 @@ public class JwtTokenProvider {
         } catch (NullPointerException exception) {
             System.out.println("Token is null");
             return false;
+        }
+    }
+
+    // board get userId
+    public Object getLoginId(String token){
+        try {
+            Claims accessClaims = getClaimsFormToken(token);
+            System.out.println("Access expireTime: " + accessClaims.getExpiration());
+            System.out.println("Access loginId: " + accessClaims.get("userId"));
+            return accessClaims.get("userId");
+        } catch (ExpiredJwtException exception) {
+            System.out.println("Token Expired UserID : " + exception.getClaims().get("userId"));
+            return null;
+        } catch (JwtException exception) {
+            System.out.println("Token Tampered");
+            return null;
+        } catch (NullPointerException exception) {
+            System.out.println("Token is null");
+            return null;
         }
     }
 

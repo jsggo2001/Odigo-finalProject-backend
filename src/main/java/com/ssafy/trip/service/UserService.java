@@ -76,6 +76,7 @@ public class UserService {
             return TokenResponse.builder()
                     .ACCESS_TOKEN(accessToken)
                     .REFRESH_TOKEN(refreshToken)
+                    .nickName(user.getNickName())
                     .build();
         } else {
             //둘 다 새로 발급

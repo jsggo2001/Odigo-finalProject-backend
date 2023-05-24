@@ -3,11 +3,14 @@ package com.ssafy.trip.service;
 import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.CommentFormDTO;
 import com.ssafy.trip.interceptor.NotFoundException;
+import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.board.CommentRepository;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -18,13 +21,21 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final BoardService boardService;
     private final UserService userService;
-
+    private final JwtTokenProvider jwtTokenProvider;
     @Transactional
-    public void registerComment(CommentFormDTO commentFormDTO){
+    public void registerComment(HttpServletRequest request, CommentFormDTO commentFormDTO){
+
+
+        String accessToken = request.getHeader("Access_token");
+        System.out.println(accessToken);
+        Claims accessClaims = jwtTokenProvider.getClaimsFormToken(accessToken);
+        String loginId = (String) accessClaims.get("userId");
+        System.out.println("loginId      =>  " + loginId);
+
         Comment comment = new Comment();
         comment.setHeart(0L);
+        comment.setUser(userService.findByLoginId(loginId).get());
         comment.setBoard(boardService.getBoard(commentFormDTO.getBoardId()));
-        comment.setUser(userService.findOne(commentFormDTO.getUserId()));
         comment.setContent(commentFormDTO.getContent());
         commentRepository.save(comment);
     }

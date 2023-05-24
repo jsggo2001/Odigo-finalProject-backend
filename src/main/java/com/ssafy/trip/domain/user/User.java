@@ -1,5 +1,6 @@
 package com.ssafy.trip.domain.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.plan.UserPlan;
 
@@ -46,9 +47,11 @@ public class User {
 	@Column(name = "created_date")
 	private LocalDate createdDate;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Board> boards = new ArrayList<>();
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<UserPlan> userPlans = new ArrayList<>();
 }
