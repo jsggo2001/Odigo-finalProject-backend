@@ -10,6 +10,7 @@ import com.ssafy.trip.dto.hotplace.HotPlaceDTO;
 import com.ssafy.trip.dto.hotplace.HotPlaceRegisterDTO;
 import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.board.BoardRepository;
+import com.ssafy.trip.repository.hotplace.FileInfoCustomRepository;
 import com.ssafy.trip.repository.hotplace.FileInfoRepository;
 import com.ssafy.trip.repository.hotplace.HotBoardRepository;
 import com.ssafy.trip.service.UserService;
@@ -99,7 +100,12 @@ public class HotPlaceService {
 
     @Transactional
     public void removeBoard(Long id){
+        //파일삭제후
+        List<FileInfo> listById = fileInfoRepository.getFilesByHotPlaceId(id);
 
+        for(FileInfo file : listById){
+            fileInfoRepository.deleteById(file.getId());
+        }
         //보드삭제
         hotBoardRepository.deleteById(id);
     }
