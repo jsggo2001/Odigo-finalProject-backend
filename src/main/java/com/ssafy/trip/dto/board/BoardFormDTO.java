@@ -1,15 +1,15 @@
 package com.ssafy.trip.dto.board;
 
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 
-@Data
+@Getter @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BoardFormDTO {
 
     private Long id;
