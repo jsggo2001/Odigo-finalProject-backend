@@ -24,6 +24,7 @@ public class BoardService {
     private final BoardRepository boardRepository;
     private final UserService userService;
     private final JwtTokenProvider jwtTokenProvider;
+    private final CommentService commentService;
 
     @Transactional
     public boolean registBoard(HttpServletRequest request, BoardFormDTO boardFormDTO){
@@ -72,6 +73,8 @@ public class BoardService {
 
     @Transactional
     public void removeBoard(Long id){
+        // 댓글먼저 삭제하기
+
         boardRepository.deleteById(id);
     }
 
