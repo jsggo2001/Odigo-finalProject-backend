@@ -1,10 +1,12 @@
 package com.ssafy.trip.service;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.board.BoardRepository;
+import com.ssafy.trip.repository.board.CommentRepository;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -73,8 +75,16 @@ public class BoardService {
 
     @Transactional
     public void removeBoard(Long id){
-        // 댓글먼저 삭제하기
 
+        // 댓글먼저 삭제하기
+        List<Comment> listById = commentService.getCommentByBoardId(id);
+
+        for(Comment comm : listById){
+          //  try {
+                commentService.deleteComment(comm.getId());
+           // }catch(Exception e){}
+        }
+        //보드삭제
         boardRepository.deleteById(id);
     }
 

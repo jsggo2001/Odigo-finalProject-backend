@@ -1,5 +1,6 @@
 package com.ssafy.trip.controller;
 
+import com.ssafy.trip.domain.board.Board;
 import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.dto.board.CommentDTO;
 import com.ssafy.trip.dto.board.CommentFormDTO;
@@ -61,7 +62,8 @@ public class CommentController {
 
     @PostMapping
     private ResponseEntity<?> registerComment(HttpServletRequest request, @RequestBody CommentFormDTO commentFormDTO){
-        commentService.registerComment(request, commentFormDTO);
+        Board board = boardService.getBoard(commentFormDTO.getBoardId());
+        commentService.registerComment(request, commentFormDTO, board);
         return ResponseEntity.ok().build();
     }
 
