@@ -1,6 +1,7 @@
 package com.ssafy.trip.service.hotplace;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.domain.hotplace.FileInfo;
 import com.ssafy.trip.domain.hotplace.HotPlace;
 import com.ssafy.trip.dto.board.BoardDTO;
@@ -49,7 +50,8 @@ public class HotPlaceService {
         hotBoard.setTitle(boardDTO.getTitle());
         hotBoard.setContent(boardDTO.getContent());
         //System.out.println("boardDTO.getFileInfos()" + boardDTO.getFileInfos());
-
+        hotBoard.setCount(0L);
+        hotBoard.setHeart(0L);
         for (String file : boardDTO.getFileInfos()) {
             FileInfo info = FileInfo
             .builder()
@@ -90,6 +92,8 @@ public class HotPlaceService {
 
     @Transactional
     public void removeBoard(Long id){
+
+        //보드삭제
         hotBoardRepository.deleteById(id);
     }
 
