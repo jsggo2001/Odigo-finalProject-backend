@@ -2,9 +2,12 @@ package com.ssafy.trip.controller;
 
 import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.user.*;
+import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.service.UserService;
+import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
@@ -22,6 +26,7 @@ import java.util.Map;
 public class UserController {
 
      private final UserService userService;
+     private final JwtTokenProvider jwtTokenProvider;
 
     // 회원가입
     @PostMapping
@@ -67,27 +72,31 @@ public class UserController {
     }
 
     // list 조회
-    @GetMapping
-    private ResponseEntity<List<UserDTO>> getList() {
-        List<User> findList = userService.findUsers();
-        List<UserDTO> results = new ArrayList<>();
-        findList.stream().forEach(findUser ->
-            results.add(new UserDTO(findUser.getId(), findUser.getLoginId(),
-                    findUser.getMail(), findUser.getName(), findUser.getPassword(), findUser.getPhoneNumber(),
-                    findUser.getNickName(), findUser.getCreatedDate())));
-        return new ResponseEntity<>(results, HttpStatus.OK);
-    }
+//    @GetMapping
+//    private ResponseEntity<List<UserDTO>> getList() {
+//        List<User> findList = userService.findUsers();
+//        List<UserDTO> results = new ArrayList<>();
+//        findList.stream().forEach(findUser ->
+//            results.add(new UserDTO(findUser.getId(), findUser.getLoginId(),
+//                    findUser.getMail(), findUser.getName(), findUser.getPassword(), findUser.getPhoneNumber(),
+//                    findUser.getNickName(), findUser.getCreatedDate())));
+//        return new ResponseEntity<>(results, HttpStatus.OK);
+//    }
 
     @PutMapping("/{userId}")
-    private void update(@ModelAttribute UserUpdateFormDTO userUpdateFormDTO, @PathVariable Long userId) {
+    private void update(@RequestBody UserUpdateFormDTO userUpdateFormDTO, @PathVariable Long userId) {
         userUpdateFormDTO.setId(userId);
+        System.out.println(userUpdateFormDTO);
         userService.updateUser(userUpdateFormDTO);
     }
 
     // detail 조회
-    @GetMapping("/{userId}")
-    private ResponseEntity<UserDTO> getUser(@PathVariable Long userId) {
-        User findUser = userService.findOne(userId);
+    @GetMapping("/detail")
+    private ResponseEntity<UserDTO> getUser(HttpServletRequest request) {
+
+        String userId = jwtTokenProvider.getLoginId(request);
+
+        User findUser = userService.findByLoginId(userId).get();
 
         UserDTO result = new UserDTO(findUser.getId(), findUser.getLoginId(),
                 findUser.getMail(), findUser.getName(), findUser.getPassword(), findUser.getPhoneNumber(),

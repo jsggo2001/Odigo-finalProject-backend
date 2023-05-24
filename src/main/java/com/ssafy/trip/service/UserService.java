@@ -3,6 +3,7 @@ package com.ssafy.trip.service;
 import com.ssafy.trip.domain.user.Auth;
 import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.user.*;
+import com.ssafy.trip.interceptor.NotFoundException;
 import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.user.AuthRepository;
 import com.ssafy.trip.repository.user.UserRepository;
@@ -128,7 +129,6 @@ public class UserService {
 
 
     public TokenResponse issueAccessToken(HttpServletRequest request) throws Exception {
-        System.out.println("issyy");
         String accessToken = jwtTokenProvider.resolveAccessToken(request);
         String refreshToken = jwtTokenProvider.resolveRefreshToken(request);
         System.out.println("accessToken = " + accessToken);
@@ -152,10 +152,12 @@ public class UserService {
                     //예외발생
                     throw new Exception("변조된 토큰입니다.");
                 }
+            } else if (refreshToken.equals("noneToken")) {
+                throw new Exception("리프레시 토큰이 안날라옴");
             } else {
                 //입력으로 들어온 Refresh 토큰이 유효하지 않음
                 System.out.println("토큰 만료");
-                throw new Exception("토큰이 유효하지 않습니다");
+                throw new IllegalStateException("토큰이 유효하지 않습니다");
             }
         }
         return TokenResponse.builder()

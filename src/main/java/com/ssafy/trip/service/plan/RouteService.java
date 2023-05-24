@@ -19,11 +19,12 @@ public class RouteService {
     @Transactional
     public RouteResponse save(RouteRequest request, Plan plan, int idx) {
 
-        Route route = Route.builder().name(request.getPlace_name()).sequence(idx)
+        Route route = Route.builder().name(request.getPlace_name()).sequence(idx).day(request.getGroup())
                         .latitude(request.getX()).longitude(request.getY())
                 .address(request.getAddress_name()).url(request.getPlace_url()).cost(request.getCost())
                 .build();
         route.addPlan(plan);
+        System.out.println(route);
         routeRepository.save(route);
 
         return RouteResponse.builder().name(route.getName()).plan_name(plan.getName())

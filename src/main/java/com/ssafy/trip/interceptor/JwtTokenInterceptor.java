@@ -14,7 +14,6 @@ import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
-@CrossOrigin
 public class JwtTokenInterceptor implements HandlerInterceptor {
 
     private final JwtTokenProvider jwtTokenProvider;
@@ -37,7 +36,6 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        response.setStatus(401);
         if (jwtTokenProvider.isValidAccessToken(accessToken) == false) {
             response.setStatus(403);
         } else {
