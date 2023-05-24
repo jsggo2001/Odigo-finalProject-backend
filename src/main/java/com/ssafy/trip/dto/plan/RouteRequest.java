@@ -17,4 +17,5 @@ public class RouteRequest {
     private int cost;
     private String address_name;
     private String place_url;
+    private int group;
 }

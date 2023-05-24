@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 @Builder
 @Getter
+@ToString
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Route {
@@ -37,4 +38,6 @@ public class Route {
     private String address;
 
     private String url;
+
+    private int day;
 }
