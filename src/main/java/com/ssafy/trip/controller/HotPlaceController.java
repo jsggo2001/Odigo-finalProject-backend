@@ -41,11 +41,12 @@ public class HotPlaceController {
         boardLists.stream().forEach(findBoard ->
                 boardList.add(new HotPlaceResponseDTO(findBoard.getId(), findBoard.getUser().getNickName(),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
-                        findBoard.getHeart(), findBoard.getFileInfos(),
+                        findBoard.getHeart(), findBoard.getFileInfos(),findBoard.getCreatedDate(),
                         findBoard.getModifiedDate(), findBoard.getUrl(),
                         findBoard.getLat(),
                         findBoard.getLon(), findBoard.getPlaceName(),
-                        findBoard.getPlaceName())));
+                        findBoard.getPlaceName()
+                        )));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
     }
 
@@ -92,5 +93,10 @@ public class HotPlaceController {
         return ResponseEntity.ok().build();
     }
 
+    @GetMapping("/{boardId}/heart")
+    private ResponseEntity<?> updateHeartCnt(@PathVariable Long boardId) {
+        hotPlaceService.increaseHeartCnt(boardId);
+        return ResponseEntity.ok().build();
+    }
 
 }

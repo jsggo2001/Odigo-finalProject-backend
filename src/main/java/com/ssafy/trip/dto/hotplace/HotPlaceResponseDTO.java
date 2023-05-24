@@ -23,6 +23,7 @@ public class HotPlaceResponseDTO {
 
         private List<FileInfo> fileInfos;
 
+        private LocalDateTime createdDate;
         private LocalDateTime modifiedDate;
 
         private String url;

@@ -118,5 +118,12 @@ public class HotPlaceService {
         board.setCount(hit+1);
     }
 
+    @Transactional
+    public void increaseHeartCnt(Long id){
+        HotPlace board = hotBoardRepository.getBoard(id);
+        System.out.println(board);
+        Long heart = board.getHeart();
+        board.setHeart(heart+1);
+    }
 
 }
