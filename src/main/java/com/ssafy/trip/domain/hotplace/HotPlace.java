@@ -1,6 +1,7 @@
 package com.ssafy.trip.domain.hotplace;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,6 +56,7 @@ public class HotPlace {
     private String placeName;
     private String roadName;
 
-
+    @OneToMany(mappedBy ="board")
+    private List<HotPlaceComment> comments = new ArrayList<>();
 
 }
