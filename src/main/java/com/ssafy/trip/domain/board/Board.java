@@ -1,22 +1,23 @@
 package com.ssafy.trip.domain.board;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ssafy.trip.domain.hotplace.FileInfo;
 import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.annotations.ColumnDefault;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
 @Setter
-@ToString
 @EntityListeners(AuditingEntityListener.class)
 public class Board {
 
@@ -43,4 +44,8 @@ public class Board {
     @LastModifiedDate
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+
+    @OneToMany(mappedBy ="board")
+    private List<Comment> comments = new ArrayList<>();
+
 }

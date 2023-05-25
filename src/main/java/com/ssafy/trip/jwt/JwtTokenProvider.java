@@ -20,8 +20,10 @@ public class JwtTokenProvider {
     @Value("${secret.refresh}")
     private String REFRESH_KEY;// = "ref";
 
-    private final long ACCESS_TOKEN_VALID_TIME = 1 * 60 * 1000L;   // 1분
+    private final long ACCESS_TOKEN_VALID_TIME = 20 * 60 * 1000L;   // 20분
+//    private final long REFRESH_TOKEN_VALID_TIME = 20 * 1000L;   // 20초
     private final long REFRESH_TOKEN_VALID_TIME = 60 * 60 * 24 * 7 * 1000L;   // 1주
+//    private final long REFRESH_TOKEN_VALID_TIME = 1 * 60 * 1000L;   // 1분
 
     // 객체 초기화, secretKey를 Base64로 인코딩한다.
     @PostConstruct
@@ -43,6 +45,13 @@ public class JwtTokenProvider {
                 .setExpiration(new Date(now.getTime() + ACCESS_TOKEN_VALID_TIME)) // set Expire Time
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)  // 사용할 암호화 알고리즘과
                 .compact();
+    }
+
+    // loginId 토큰에서 파싱
+    public String getLoginId(HttpServletRequest request) {
+        String accessToken = request.getHeader("Access_token");
+        Claims accessClaims = getClaimsFormToken(accessToken);
+        return (String) accessClaims.get("userId");
     }
 
     public String createRefreshToken(String userId) {
@@ -92,7 +101,7 @@ public class JwtTokenProvider {
         try {
             Claims accessClaims = getClaimsFormToken(token);
             System.out.println("Access expireTime: " + accessClaims.getExpiration());
-            System.out.println("Access userId: " + accessClaims.get("userId"));
+            System.out.println("Access loginId: " + accessClaims.get("userId"));
             return true;
         } catch (ExpiredJwtException exception) {
             System.out.println("Token Expired UserID : " + exception.getClaims().get("userId"));
@@ -103,6 +112,25 @@ public class JwtTokenProvider {
         } catch (NullPointerException exception) {
             System.out.println("Token is null");
             return false;
+        }
+    }
+
+    // board get userId
+    public Object getLoginId(String token){
+        try {
+            Claims accessClaims = getClaimsFormToken(token);
+            System.out.println("Access expireTime: " + accessClaims.getExpiration());
+            System.out.println("Access loginId: " + accessClaims.get("userId"));
+            return accessClaims.get("userId");
+        } catch (ExpiredJwtException exception) {
+            System.out.println("Token Expired UserID : " + exception.getClaims().get("userId"));
+            return null;
+        } catch (JwtException exception) {
+            System.out.println("Token Tampered");
+            return null;
+        } catch (NullPointerException exception) {
+            System.out.println("Token is null");
+            return null;
         }
     }
 
@@ -142,5 +170,7 @@ public class JwtTokenProvider {
             return false;
         }
     }
+
+
 }
 

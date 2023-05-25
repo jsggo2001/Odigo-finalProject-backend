@@ -2,9 +2,12 @@ package com.ssafy.trip.dto.user;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter @Setter
+@ToString
 public class UserUpdateFormDTO {
+	private Long id;
 	
 	private String loginId;
 	

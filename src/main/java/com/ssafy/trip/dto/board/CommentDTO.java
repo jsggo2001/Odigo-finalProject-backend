@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 public class CommentDTO {
     private Long id;
 
-    private Long userId;
     private String loginId;
+    private String nickName;
     private Long boardId;
 
     private String content;
@@ -21,4 +21,6 @@ public class CommentDTO {
     private Long heart; // 좋아요수
 
     private String filePath; // img
+
+    private LocalDateTime modifiedDate;
 }

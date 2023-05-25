@@ -21,7 +21,7 @@ public class BoardCustomRepositoryImpl implements BoardCustomRepository{
     public List<Board> getBoardsByName(String titleName) {
 
         return em.createQuery(("select b from Board b " +
-                "where b.title = :title"),Board.class)
+                "where b.title = :title"), Board.class)
                 .setParameter("title", titleName)
                 .getResultList();
 

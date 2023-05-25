@@ -19,14 +19,21 @@ public class RouteService {
     @Transactional
     public RouteResponse save(RouteRequest request, Plan plan, int idx) {
 
-        Route route = Route.builder().name(request.getPlace_name()).sequence(idx)
-                        .latitude(request.getX()).longitude(request.getY())
-                .address(request.getAddress_name()).url(request.getPlace_url()).cost(request.getCost())
+        Route route = Route.builder().place_name(request.getPlace_name()).sequence(idx).day(request.getGroup())
+                        .x(request.getX()).y(request.getY()).content(request.getContent()).phone(request.getPhone())
+                .address_name(request.getAddress_name()).place_url(request.getPlace_url()).cost(request.getCost())
+                .category_group_name(request.getCategory_group_name()).preId(request.getId())
                 .build();
         route.addPlan(plan);
+        System.out.println(route);
         routeRepository.save(route);
 
-        return RouteResponse.builder().name(route.getName()).plan_name(plan.getName())
-                .sequence(route.getSequence()).latitude(route.getLatitude()).longitude(route.getLongitude()).build();
+        return RouteResponse.builder().name(route.getPlace_name()).plan_name(plan.getName())
+                .sequence(route.getSequence()).latitude(route.getX()).longitude(route.getY()).build();
+    }
+
+    @Transactional
+    public void deleteByPlanId(Long planId) {
+        routeRepository.deleteByPlanId(planId);
     }
 }

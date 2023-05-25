@@ -1,5 +1,6 @@
 package com.ssafy.trip.dto.user;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -7,6 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@Builder
 public class UserRegisterDTO {
 
     private String loginId;
