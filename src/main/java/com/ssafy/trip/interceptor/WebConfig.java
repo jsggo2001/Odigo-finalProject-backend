@@ -34,6 +34,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/**")
+
                 .excludePathPatterns("/user/login")
                 .excludePathPatterns("/user")
                 .excludePathPatterns("/user/issue")
@@ -42,6 +43,8 @@ public class WebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/board/**")
                 .excludePathPatterns("/hotplace/**")
                 .excludePathPatterns("/comment/**");
+
+
     }
 
     @Bean
