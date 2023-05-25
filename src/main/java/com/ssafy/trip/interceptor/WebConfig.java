@@ -21,8 +21,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://127.0.0.1:9000")
-                .allowedOrigins("http://localhost:9000")
+                .allowedOrigins("http://localhost:9000","http://127.0.0.1:9000")
                 .allowedMethods(
                         HttpMethod.GET.name(),
                         HttpMethod.HEAD.name(),
@@ -34,9 +33,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/**")
-
                 .excludePathPatterns("/user/login")
-                .excludePathPatterns("/user")
+                .excludePathPatterns("/user/**")
                 .excludePathPatterns("/user/issue")
                 .excludePathPatterns("/travel/**")
                 .excludePathPatterns("/map/**")

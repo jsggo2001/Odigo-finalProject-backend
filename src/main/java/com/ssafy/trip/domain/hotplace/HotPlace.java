@@ -1,6 +1,7 @@
 package com.ssafy.trip.domain.hotplace;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.ssafy.trip.domain.board.Comment;
 import com.ssafy.trip.domain.user.User;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,4 +49,15 @@ public class HotPlace {
     @LastModifiedDate
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate;
+
+    private String url;
+    private Double lat;
+    private Double lon;
+    private String placeName;
+    private String roadName;
+
+    @JsonIgnore
+    @OneToMany(mappedBy ="hotPlace")
+    private List<HotPlaceComment> comments = new ArrayList<>();
+
 }

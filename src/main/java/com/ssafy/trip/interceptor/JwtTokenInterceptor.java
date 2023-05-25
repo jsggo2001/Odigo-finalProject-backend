@@ -20,7 +20,6 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-
         //preflight요청이 날라오는 경우 cors에러 발생 대처 코드
         if (isPreflightRequest(request)) {
             return true;
