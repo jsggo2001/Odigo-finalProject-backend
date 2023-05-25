@@ -1,6 +1,5 @@
 package com.ssafy.trip.dto.plan;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 @AllArgsConstructor
-public class PlanRegisterDTO {
+public class PlanModifyDTO {
 
     private String name;
 
@@ -23,6 +22,8 @@ public class PlanRegisterDTO {
     private RouteRequest[] routes;
 
     private String login_id;
+
+    private long id_for_delete;
 
 
 
