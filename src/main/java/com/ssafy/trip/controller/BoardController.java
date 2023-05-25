@@ -1,6 +1,7 @@
 package com.ssafy.trip.controller;
 
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.board.BoardDTO;
 import com.ssafy.trip.dto.board.BoardFormDTO;
 import com.ssafy.trip.service.BoardService;
@@ -34,10 +35,18 @@ public class BoardController {
         List<BoardDTO> boardList = new ArrayList<>();
 
         boardLists.stream().forEach(findBoard ->
-                boardList.add(new BoardDTO(findBoard.getId(), findBoard.getUser().getNickName(),
+                boardList.add(new BoardDTO(findBoard.getId(), checkUser(findBoard.getUser()),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getCreatedDate(), findBoard.getModifiedDate())));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
+    }
+
+    private String checkUser(User user) {
+        if (user == null) {
+            return "null";
+        } else {
+            return user.getNickName();
+        }
     }
 
     @GetMapping("/{id}")

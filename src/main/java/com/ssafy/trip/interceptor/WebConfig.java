@@ -27,22 +27,20 @@ public class WebConfig implements WebMvcConfigurer {
                         HttpMethod.HEAD.name(),
                         HttpMethod.POST.name(),
                         HttpMethod.PUT.name(),
-                        HttpMethod.DELETE.name());;
-//                .maxAge(3600); // 3600초 동안 preflight 결과를 캐시에 저장
+                        HttpMethod.DELETE.name());
     }
 
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(jwtTokenInterceptor).addPathPatterns("/**")
+                .excludePathPatterns("/hotplace/**")
+                .excludePathPatterns("hotplace")
                 .excludePathPatterns("/user/login")
                 .excludePathPatterns("/user/**")
                 .excludePathPatterns("/user/issue")
                 .excludePathPatterns("/travel/**")
                 .excludePathPatterns("/map/**")
                 .excludePathPatterns("/board/**")
-                .excludePathPatterns("/hotplace/**")
                 .excludePathPatterns("/comment/**");
-
-
     }
 
     @Bean

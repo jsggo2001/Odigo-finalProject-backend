@@ -2,6 +2,7 @@ package com.ssafy.trip.domain.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.ssafy.trip.domain.board.Board;
+import com.ssafy.trip.domain.hotplace.HotPlace;
 import com.ssafy.trip.domain.plan.UserPlan;
 
 import lombok.*;
@@ -53,4 +54,8 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<UserPlan> userPlans = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<HotPlace> hotPlaces = new ArrayList<>();
 }

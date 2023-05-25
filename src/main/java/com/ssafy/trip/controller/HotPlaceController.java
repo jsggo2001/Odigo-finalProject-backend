@@ -2,6 +2,7 @@ package com.ssafy.trip.controller;
 
 import com.ssafy.trip.domain.hotplace.FileInfo;
 import com.ssafy.trip.domain.hotplace.HotPlace;
+import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.hotplace.HotPlaceDTO;
 import com.ssafy.trip.dto.hotplace.HotPlaceRegisterDTO;
 import com.ssafy.trip.dto.hotplace.HotPlaceResponseDTO;
@@ -38,8 +39,9 @@ public class HotPlaceController {
         List<HotPlace> boardLists = hotPlaceService.getBoards();
         List<HotPlaceResponseDTO> boardList = new ArrayList<>();
 
+
         boardLists.stream().forEach(findBoard ->
-                boardList.add(new HotPlaceResponseDTO(findBoard.getId(), findBoard.getUser().getNickName(),
+                boardList.add(new HotPlaceResponseDTO(findBoard.getId(), checkUser(findBoard.getUser()),
                         findBoard.getTitle(), findBoard.getContent(), findBoard.getCount(),
                         findBoard.getHeart(), findBoard.getFileInfos(),findBoard.getCreatedDate(),
                         findBoard.getModifiedDate(), findBoard.getUrl(),
@@ -48,6 +50,14 @@ public class HotPlaceController {
                         findBoard.getPlaceName()
                         )));
         return new ResponseEntity<>(boardList, HttpStatus.OK);
+    }
+
+    private String checkUser(User user) {
+        if (user == null) {
+            return "null";
+        } else  {
+            return user.getNickName();
+        }
     }
 
     @GetMapping("/{id}")

@@ -3,15 +3,14 @@ package com.ssafy.trip.service;
 import com.ssafy.trip.domain.user.Auth;
 import com.ssafy.trip.domain.user.User;
 import com.ssafy.trip.dto.user.*;
-import com.ssafy.trip.interceptor.NotFoundException;
 import com.ssafy.trip.jwt.JwtTokenProvider;
 import com.ssafy.trip.repository.user.AuthRepository;
 import com.ssafy.trip.repository.user.UserRepository;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -125,6 +124,12 @@ public class UserService {
 
     @Transactional
     public void remove(Long id) {
+        authRepository.deleteByUserId(id);
+
+        User user = findOne(id);
+        user.getUserPlans().forEach(userPlan -> {userPlan.setUser(null);});
+        user.getBoards().forEach(board -> {board.setUser(null);});
+        user.getHotPlaces().forEach(hotPlace -> {hotPlace.setUser(null);});
         userRepository.deleteById(id);
     }
 

@@ -35,6 +35,10 @@ public class JwtTokenInterceptor implements HandlerInterceptor {
             return true;
         }
 
+        if (accessToken.equals("noneToken") && jwtTokenProvider.isValidRefreshToken(refreshToken)) {
+            response.setStatus(401);
+        }
+
         if (jwtTokenProvider.isValidAccessToken(accessToken) == false) {
             response.setStatus(403);
         } else {

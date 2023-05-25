@@ -107,6 +107,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     private void remove(@PathVariable Long userId) {
+        System.out.println(userId);
         userService.remove(userId);
     }
 
