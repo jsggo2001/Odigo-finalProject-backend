@@ -95,6 +95,7 @@ public class HotPlaceService {
         hotPlace.setLon(hotPlaceRegisterDTO.getLon());
         hotPlace.setPlaceName(hotPlaceRegisterDTO.getPlaceName());
         hotPlace.setRoadName(hotPlaceRegisterDTO.getRoadName());
+        hotPlace.setFileInfos(hotPlaceRegisterDTO.getFileInfos());
         hotPlace.setUrl(hotPlaceRegisterDTO.getUrl());
     }
 

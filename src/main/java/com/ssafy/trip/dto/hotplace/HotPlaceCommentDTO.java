@@ -25,7 +25,7 @@ public class HotPlaceCommentDTO {
 
     private Long heart; // 좋아요수
 
-    private String filePath; // img
+    private String fileInfo;// img
 
     private LocalDateTime modifiedDate;
 

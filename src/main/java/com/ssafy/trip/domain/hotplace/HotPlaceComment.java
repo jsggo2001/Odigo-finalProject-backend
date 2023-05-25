@@ -40,5 +40,5 @@ public class HotPlaceComment {
 
     private Long heart;
 
-    private String filePath; // img
+    private String fileInfo; // img
 }

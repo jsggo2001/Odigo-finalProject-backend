@@ -31,4 +31,6 @@ public class HotPlaceResponseDTO {
         private Double lon;
         private String placeName;
         private String roadName;
+
+
 }

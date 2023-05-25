@@ -32,4 +32,5 @@ public class HotPlaceRegisterDTO {
     private String placeName;
     private String roadName;
 
+
 }

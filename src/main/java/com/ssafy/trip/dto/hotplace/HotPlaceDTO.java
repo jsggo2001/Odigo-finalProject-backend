@@ -39,4 +39,5 @@ public class HotPlaceDTO {
         private Double lon;
         private String placeName;
         private String roadName;
+
 }

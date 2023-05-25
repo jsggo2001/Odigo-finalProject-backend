@@ -56,7 +56,8 @@ public class HotPlace {
     private String placeName;
     private String roadName;
 
-    @OneToMany(mappedBy ="board")
+    @JsonIgnore
+    @OneToMany(mappedBy ="hotPlace")
     private List<HotPlaceComment> comments = new ArrayList<>();
 
 }

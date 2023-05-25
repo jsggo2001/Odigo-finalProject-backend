@@ -43,7 +43,7 @@ public class HotPlaceCommentController {
                         comment.getUser().getNickName(),
                         comment.getHotPlace().getId(),
                         comment.getContent(), comment.getHeart(),
-                        comment.getFilePath(),
+                        comment.getFileInfo(),
                         comment.getModifiedDate())));
 
         return new ResponseEntity<>(commentList, HttpStatus.OK);
@@ -57,7 +57,7 @@ public class HotPlaceCommentController {
         commentDto.setId(commentId);
         commentDto.setBoardId(comment.getId());
         commentDto.setContent(comment.getContent());
-        commentDto.setFilePath(comment.getFilePath());
+        commentDto.setFileInfo(comment.getFileInfo());
         commentDto.setHeart(comment.getHeart());
         commentDto.setLoginId(comment.getUser().getLoginId());
         commentDto.setBoardId(comment.getHotPlace().getId());
