@@ -1,8 +1,9 @@
 package com.ssafy.trip.model.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Spot {
+public class Spot implements Serializable {
 	private String content_id;
 	private String title;
 	private String content_type_id;
