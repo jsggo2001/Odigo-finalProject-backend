@@ -23,22 +23,36 @@
 		from attraction_info
 	</sql>
 
-	<select id="getTravelList" parameterType="map"
+	<select id="redis" parameterType="map"
 		resultType="Spot">
+		select content_id, title, content_type_id , sido_code, gugun_code, latitude,
+		longitude, first_image, addr1
+		from attraction_info
+	</select>
+
+	<select id="noRedis" parameterType="map"
+			resultType="Spot">
+		select content_id, title, content_type_id , sido_code, gugun_code, latitude,
+		longitude, first_image, addr1
+		from attraction_info
+	</select>
+
+	<select id="getTravelList" parameterType="map"
+			resultType="Spot">
 		<include refid="basicTravelSQL"></include>
-		 <where>
- 		 	<if test="sido_code != null and sido_code != '' and sido_code.length()>0">
- 		 		sido_code =  #{sido_code}
- 		 	</if>
- 		 	<if test="content_type_id != null and content_type_id != '' and content_type_id.length()>0">
- 		 		and content_type_id = #{content_type_id}
- 		 	</if>
- 		 	<if test="gugun_code != null and gugun_code != '' and gugun_code.length()>0">
- 		 		and gugun_code = #{gugun_code}
- 		 	</if>
- 		 	
- 		 </where>
- 		 and title like concat('%',#{keyword},'%')
+		<where>
+			<if test="sido_code != null and sido_code != '' and sido_code.length()>0">
+				sido_code =  #{sido_code}
+			</if>
+			<if test="content_type_id != null and content_type_id != '' and content_type_id.length()>0">
+				and content_type_id = #{content_type_id}
+			</if>
+			<if test="gugun_code != null and gugun_code != '' and gugun_code.length()>0">
+				and gugun_code = #{gugun_code}
+			</if>
+
+		</where>
+		and title like concat('%',#{keyword},'%')
 	</select>
 
 	<select id="getGugunList" parameterType="String" resultType="Gugun">
